@@ -1,0 +1,58 @@
+var - function scoped, if defined in the block var becomes globally available.
+	- It can be defined multiple times inside a function.
+let - block scoped.
+	- Can only be defined once inside a block.
+	- Value can be updated in the block.
+const - block scoped
+	- Can only be defined once inside a block.
+	- Value can not be updated in the block, but in case of Object properties/ attributes can be changes as long as the object remains the same.
+	- if you want to freeze the properties of the object const you can use Object.freeze(<const Object>).
+
+=====================================================================
+Some Points/ Examples: 
+for(var i = 0; i < 10; i++){
+	// in this way i is in the global scope :( wrong WAY
+}
+-----------------------------------------------------
+for(var i = 0; i < 10; i++){
+	console.log(i)
+	setTimeout( function(){
+    	console.log("i is: " + i); // line AA
+    }, 1000);
+}
+// In the Above Example i will be available in the global scope and line AA will print in the console with the value of i as 10 as the i is changed in the scope before the completion of the timeout.
+-----------------------------------------------------
+for(let i = 0; i < 10; i++){
+	console.log(i)
+	setTimeout( function(){
+    	console.log("i is: " + i); // line AA
+    }, 1000);
+}
+// This will work as let is block scoped so we will get 10 line AA printed in the console with the values 0 - 9.
+-----------------------------------------------------
+for(const i = 0; i < 10; i++){
+	console.log(i)
+	setTimeout( function(){
+    	console.log("i is: " + i); // line AA
+    }, 1000);
+}
+// This will throw an error as value of const can not be updated in the block.
+
+=====================================================================
+Temporal Dead Zone: let and const can not be used before it is defined, but var can be used before definition( we can not access the value but it will not throw error as var is defined in the global scope as undefined.)
+
+console.log(temp) // undefined
+var temp = "asd123";
+
+console.log(remp) // error as not defined
+const remp = "asd123"; // same in case of let
+
+The zone before the let or const is defined is called as the Temporar Dead Zone for that let/ const.
+
+======================================================================
+Tips: By MATHIAS
+use const by default
+only use let if rebinding is needed
+(var shouldn’t be used in ES2015)
+
+LINK:  https://mathiasbynens.be/notes/es6-const
