@@ -1,0 +1,86 @@
+const names = ['bhavik', 'gaurang', 'bejoy'];
+
+// with out arrow function
+const fullNames = names.map(function(name) {
+	return `${name} omar`;
+})
+
+// with arrow function
+const fullNames2 = names.map((name) => {
+	return `${name} omar`;
+})
+
+// with arrow function and only one argument
+const fullNames3 = names.map(name => {
+	return `${name} omar`;
+})
+
+// with arrow function Implecit return - on need to write return its added implecitely( remove return and {}) - used for oneliner code.
+const fullNames4 = names.map(name => `${name} omar`);
+
+// with arrow function and no argument
+const fullNames5 = names.map(() => `cool omar`);
+
+=========================================================================
+Named Function: 
+function(){
+	console.log("This is an example of named function");
+}
+
+Arrow Function can not have a name - they are anonymous functions
+
+If want to use with a name
+const say = (name) => { alert(` Hello ${name}`)}
+
+say('gaurang');
+
+=========================================================================
+if want to return object
+
+const sirName = 'omar'
+// if name and the property are same 
+// then {name: name}
+// can be written as 
+// {name}
+const withObj = names.map((name, i) => ({name, sirName, place: i+1}));
+
+=========================================================================
+
+reference of this will not change inside an arrow function;
+Arrow function always have the reference of the parent.
+=========================================================================
+
+Default Argunamts in Functions: 
+
+//it takes values of left and right if provided and take default value(left = 10 and right = 12) if not passed.
+function calculate(main, left = 10, right = 12){
+	return main + left + right;
+}
+
+calculate(100) // 122
+calculate(100, 100) // 212
+=========================================================================
+
+When not to use arrow fuction:
+
+// when adding a class to a queryselector
+const button = document.querySelector('#push');
+button.addEventListner('click', () => {
+	console.log(this); // line a
+	this.classList.toggle('on')
+})
+-- this will not work as this in line a is window - hence must be using function()
+
+// when you need a method to bind to an object
+const person = {
+	points: 23;
+	score: () => {
+	console.log(this); // line a	
+	this.points++;
+	}
+}
+-- points will not change when we call score as this in line a is window so must nees function()
+
+// when you need to add prototype method. - learn prototype
+
+// when you need arguments object. - learn arguments object provided by javascript
