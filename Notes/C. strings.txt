@@ -1,0 +1,70 @@
+const str = 'qwertyuiop';
+
+============================================================
+.startswith()
+-----------------------
+console.log(str.startsWith('qwe')); //true 
+
+console.log(str.startsWith('QWE')); //false --case sensitive
+
+console.log(str.startsWith('rt', 3)); //true --check starts with from in between of a string
+
+.endswith()
+-----------------------
+console.log(str.endsWith('iop')); //true
+
+console.log(str.endsWith('yu', 7)); //true - check ends with in between of a string.
+
+.includes()
+-----------------------
+console.log(str.includes('tyu');); //true - if any where in the string
+
+.repeat()
+----------------------
+console.log(str.repeat(10)); // qwertyuiopqwertyuiopqwertyuiopqwertyuiopqwertyuiopqwertyuiopqwertyuiopqwertyuiopqwertyuiopqwertyuiop
+
+console.log(`${str} `.repeat(10)) //qwertyuiop qwertyuiop qwertyuiop qwertyuiop qwertyuiop qwertyuiop qwertyuiop qwertyuiop qwertyuiop qwertyuiop - same with template string
+
+=============================================
+Repeat example:
+
+const hero1 = 'Shaktimaan';
+const hero2 = 'spiderman';
+const hero3 = 'doga';
+const hero4 = 'natasha romanoff';
+
+function padLeft(string, padLength = 30){
+	return `-> ${' '.repeat(padLength-string.length)}${string}`;
+}
+
+console.log(padLeft(hero1, 20));
+console.log(padLeft(hero2, 20));
+console.log(padLeft(hero3, 20));
+console.log(padLeft(hero4, 20));
+
+===============================================================
+Template letral Example:
+
+let heroString = `Lot of heros here ${hero1}, ${hero2}, ${hero3} and ${hero4} only ${hero4} is female`;
+console.log(heroString)
+----------------------------------------
+Template string is passed to a predefined function we can make our own function to manipulate the string.
+
+heroString = manipulate`Lot of heros here ${hero1}, ${hero2}, ${hero3} and ${hero4} only ${hero4} is female`;
+console.log(heroString)
+
+function manipulate(string, ...args){
+	//string is an array of the string in hero string
+	console.log('string is: ', string);
+	
+	//...args(es6.) takes array of all the passed consts in the heroString
+	console.log('args is: ', args);
+
+	//NOTE: args will always one less than string
+
+	//using reduce function
+	return string.reduce((next, prev, i) => `${next}${args[i-1].toUpperCase()}${prev}`)
+
+	//we can manupulate string or can make some css enable etc...
+	// this is of a lot of use
+}
