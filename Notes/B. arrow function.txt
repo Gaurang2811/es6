@@ -84,3 +84,4 @@ const person = {
 // when you need to add prototype method. - learn prototype
 
 // when you need arguments object. - learn arguments object provided by javascript
+-- E. for of loop.js // line 45
