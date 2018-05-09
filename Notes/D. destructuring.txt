@@ -1,0 +1,93 @@
+const hero = {
+	first: 'Gaurang',
+	last: 'Omar',
+	country: 'India',
+	city: 'Kanpur',
+	isHero: true,
+}
+
+this is how we do it later
+//const first = hero.first;
+//const last = hero.last;
+
+// using destructuring syntax 
+// it will create const with the name defined inside{} and bind the properties of hero with the same property name.
+const { first, last, country, isHero } = hero
+=====================================================
+Providing a name:
+---------------------------
+const zero = {
+	first: 'Someone',
+	last: 'else',
+	country: 'India',
+	city: 'Kanpur',
+	isHero: true,
+}
+
+// this will give an error as const 'first' has already been declared
+//const { first, last, country, isHero } = zero
+
+// so we can provide a name also
+const { first:f, last:l, country:c, isHero:iH } = zero
+//😇 first will store in a variable f
+=====================================================
+Providing a default value:
+--------------------------------
+const setting = {width: 300, color: 'red'}; //height, fontsize not here;
+const {height = 100, width = 100, color = 'black', fontsize = '30px'} = setting;
+// now if the porperty with same name is present in setting it will be used else it will have the default value.
+=======================================================
+Merged example:
+---------------------------------------
+
+const {height:hgt = 100, width:wdth = 100, color:colr = 'black', fontsize:fntSiz = '30px'} = setting;
+
+===========================================================================
+===========================================================================
+Arrays destructuring:
+===========================================================================
+
+const details = ['Gaurang', 'Omar', '22', 'male'];
+const [fname, lname, age] = details;
+// note here we are using [] not {}.
+// extra will be ignored :: example-male
+console.log(fname, lname, age);
+----------------------------------------------
+const team = ['Gaurang', 'Sakshi', 'Bhavik', 'Amol', 'Raj', 'Bejoy', 'Deep']
+//				captian		v.c.	-------rest of the team---------------
+const [captain , viceCaptain, ...players] = team;
+console.log(captain , viceCaptain, players)
+
+===========================================================================
+Some Exapmles:
+
+let [inSide, outSide] = ['The Rock', 'HULK'];
+//reversing :: swapping
+[inSide, outSide] = [outSide, inSide];
+// no need to create temp variable - oneliner - preety - readable - no extra temp var.
+
+============================================================================
+Useful in functions:
+
+function calBill({total = 100, tax = 0.18, tip = 0.09} = {}){
+	return total+(total*tip)+(total*tax);
+}
+// no arg
+let bill = calBill();
+console.log(bill) // 127
+
+//black arg
+bill = calBill({});
+console.log(bill) // 127
+
+//some arg
+bill = calBill({total: 100, tax: 0.12});
+console.log(bill) // 121
+
+//all args
+bill = calBill({total: 100, tax: 0.12, tip: 0.3});
+console.log(bill) // 142
+
+//no matter what sequence
+bill = calBill({tip: 0.3, total: 100, tax: 0.12});
+console.log(bill) // 142
