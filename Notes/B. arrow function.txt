@@ -74,7 +74,7 @@ button.addEventListner('click', () => {
 // when you need a method to bind to an object
 const person = {
 	points: 23;
-	score: () => {
+	score: () => {		// ---------------------- can use score(){} ----------- directly without ':'
 	console.log(this); // line a	
 	this.points++;
 	}
