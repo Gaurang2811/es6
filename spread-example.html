@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script
+	  src="https://code.jquery.com/jquery-3.3.1.min.js"
+	  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+	  crossorigin="anonymous"></script>
+</head>
+<body>
+	<style type="text/css">
+		body{
+			background: #CAFF4CFF;
+			color: darkslateblue;
+			font-size: 80px;
+			text-align: center;
+			font-weight: 500;
+			text-shadow: 2px 2px 0 black;
+			text-transform: uppercase;
+		}
+		.jump{
+			margin-top: 50%;
+		}
+
+		.jump span{
+			display: inline-block;
+			transition: transform 0.3s;
+		}
+		.jump span:hover {
+			transform: translateY(-20px) rotate(10deg) scale(2);
+		}
+	</style>
+	<div class=jump>Gaurang Omar</div>
+	<script type="text/javascript">
+		const el = document.querySelector('.jump');
+		const elStr = el.textContent;
+		el.innerHTML = spanMaker(elStr);
+		
+		function spanMaker(text){
+			return [...text].map(char => `<span>${char}</span>`).join('')
+		}
+	</script>
+</body>
+</html>
